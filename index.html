@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="songs.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -77,8 +78,8 @@
       <div class="auction-heading"><h2 id="auction-title">Name your <em>price.</em></h2><p class="song-progress">1 / 10</p></div>
       <div class="auction-layout">
         <section class="current-song" aria-label="Current song">
-          <div class="album-art" aria-label="Album artwork placeholder"><span class="album-title-mark">AUX<br>DRAFT</span><span class="mini-record" aria-hidden="true"><i></i></span><i class="album-center" aria-hidden="true"></i></div>
-          <div class="song-info"><h3>“Good as Hell”</h3><p class="artist-name">Lizzo</p></div>
+          <div class="album-art" id="album-art" aria-label="Album artwork"><img id="album-art-image" alt="" hidden></div>
+          <div class="song-info"><h3 id="song-title"></h3><p class="artist-name" id="song-artist"></p><p id="song-status" class="song-status" aria-live="polite" hidden></p><button id="retry-song" class="retry-button" type="button" hidden>TRY AGAIN ↻</button></div>
         </section>
         <section class="bid-panel" aria-label="Current bid and bidding controls">
           <p class="turn-label"><span class="turn-light"></span><span id="turn-text">PLAYER ONE’S TURN</span></p><p class="bid-amount">$<span>0</span></p><p class="bid-label">CURRENT BID</p>
