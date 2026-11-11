@@ -388,3 +388,40 @@ h2 em { color: var(--orange); font-weight: 700; }
   letter-spacing: .08em;
   cursor: pointer;
 }
+#auction-screen .bid-buttons button { cursor: pointer; }
+#auction-screen .bid-buttons button:disabled { cursor: not-allowed; opacity: .42; }
+#auction-screen .round-message {
+  max-width: 300px;
+  margin: 6px 0 0;
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 12px;
+  line-height: 1.4;
+}
+#auction-screen .lineup li img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+#auction-screen .results-screen { padding: 8px 0 18px; }
+#auction-screen .results-screen > h2 { margin: 5px 0 18px; color: var(--cream); font-size: clamp(34px, 4vw, 46px); }
+#auction-screen .results-screen > h2 em { color: var(--orange); }
+#auction-screen .results-players { display: flex; gap: 24px; }
+#auction-screen .result-player { min-width: 0; flex: 1; }
+#auction-screen .result-summary { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 9px; }
+#auction-screen .result-summary h3 { margin: 0; overflow: hidden; color: var(--cream); font-family: var(--body); font-size: 17px; text-overflow: ellipsis; white-space: nowrap; }
+#auction-screen .result-summary p { flex: 0 0 auto; margin: 0; color: var(--orange); font-size: 13px; }
+#auction-screen .result-lineup { display: flex; flex-direction: column; gap: 5px; margin: 9px 0 0; padding: 0; list-style: none; }
+#auction-screen .result-lineup li { display: flex; min-height: 49px; align-items: center; gap: 10px; border-bottom: 1px solid rgba(241,231,211,.1); padding: 4px 0; }
+#auction-screen .result-lineup li > small { width: 20px; color: var(--orange); font-family: var(--mono); font-size: 8px; }
+#auction-screen .result-lineup img { width: 40px; height: 40px; flex: 0 0 40px; object-fit: cover; }
+#auction-screen .result-lineup li > div { display: flex; min-width: 0; flex-direction: column; gap: 3px; }
+#auction-screen .result-lineup strong { overflow: hidden; color: var(--cream); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+#auction-screen .result-lineup li span { color: var(--cream-dim); font-size: 10px; }
+#auction-screen .new-draft-button { margin-top: 20px; }
+@media (max-width: 520px) {
+  #auction-screen .results-players { flex-direction: column; gap: 22px; }
+  #auction-screen .results-screen > h2 { font-size: 34px; }
+  #auction-screen .result-lineup img { width: 36px; height: 36px; flex-basis: 36px; }
+}
