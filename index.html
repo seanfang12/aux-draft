@@ -63,9 +63,33 @@
 
       <div class="draft-bar">
         <p class="room-status" aria-live="polite"><span class="status-dot"></span><span id="room-status">Pick a room to get started</span></p>
-        <button class="start-button" type="button" disabled aria-disabled="true">START DRAFT <span aria-hidden="true">↗</span></button>
+        <div class="player-setup">
+          <label>PLAYER ONE <input id="player-one" type="text" maxlength="18" placeholder="Name" autocomplete="off"></label>
+          <label>PLAYER TWO <input id="player-two" type="text" maxlength="18" placeholder="Name" autocomplete="off"></label>
+          <button class="start-button" id="start-draft" type="button" disabled>START DRAFT <span aria-hidden="true">↗</span></button>
+        </div>
       </div>
-      <p class="coming-soon">DRAFT ROOMS ARE OPENING SOON. GET YOUR PICKS READY.</p>
+      <p class="coming-soon" id="setup-note">CHOOSE A ROOM AND ENTER BOTH PLAYER NAMES TO BEGIN.</p>
+    </section>
+
+    <section class="auction-screen" id="auction-screen" aria-labelledby="auction-title" hidden>
+      <div class="auction-topline"><p class="eyebrow"><span class="eyebrow-line"></span> THE AUCTION IS LIVE</p><button class="return-link" id="return-home" type="button">← BACK TO THE ROOMS</button></div>
+      <div class="auction-heading"><div><p class="room-stamp" id="auction-genre">GENRE ROOM</p><h2 id="auction-title">Name your <em>price.</em></h2></div><p class="song-progress">TRACK <strong>01</strong> <span>/ 10 AUCTIONED</span></p></div>
+      <div class="auction-layout">
+        <section class="current-song" aria-label="Current song">
+          <div class="album-art" aria-label="Album artwork placeholder"><span>AUX<br>DRAFT</span><i></i></div>
+          <div class="song-info"><p class="eyebrow">UP FOR GRABS <span class="auction-star">✳</span></p><h3>“Good as Hell”</h3><p class="artist-name">Lizzo</p><p class="song-tag">SAMPLE TRACK <span>·</span> NO. 01</p></div>
+        </section>
+        <section class="bid-panel" aria-label="Current bid and bidding controls">
+          <p class="bid-label">CURRENT BID</p><p class="bid-amount">$<span>0</span></p><p class="turn-label"><span class="turn-light"></span><span id="turn-text">PLAYER ONE’S TURN</span></p>
+          <div class="bid-buttons"><button type="button" disabled aria-disabled="true">PASS</button><button type="button" disabled aria-disabled="true">BID +$1 <span>↗</span></button></div>
+          <p class="controls-note">BIDDING CONTROLS COMING SOON</p>
+        </section>
+      </div>
+      <div class="players-lineups">
+        <section class="player-board"><div class="player-summary"><div><p class="eyebrow">PLAYER ONE</p><h3 id="player-one-name">PLAYER ONE</h3></div><p class="budget">$20 <span>LEFT</span></p></div><ol class="lineup" aria-label="Player one's five song lineup"><li><span>01</span><span>OPEN SLOT</span></li><li><span>02</span><span>OPEN SLOT</span></li><li><span>03</span><span>OPEN SLOT</span></li><li><span>04</span><span>OPEN SLOT</span></li><li><span>05</span><span>OPEN SLOT</span></li></ol></section>
+        <section class="player-board"><div class="player-summary"><div><p class="eyebrow">PLAYER TWO</p><h3 id="player-two-name">PLAYER TWO</h3></div><p class="budget">$20 <span>LEFT</span></p></div><ol class="lineup" aria-label="Player two's five song lineup"><li><span>01</span><span>OPEN SLOT</span></li><li><span>02</span><span>OPEN SLOT</span></li><li><span>03</span><span>OPEN SLOT</span></li><li><span>04</span><span>OPEN SLOT</span></li><li><span>05</span><span>OPEN SLOT</span></li></ol></section>
+      </div>
     </section>
   </main>
 

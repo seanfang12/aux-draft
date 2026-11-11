@@ -77,12 +77,63 @@ h2 em { color: var(--orange); font-weight: 700; }
 .pattern-record::after { position: absolute; inset: 42%; border: 1px solid currentColor; border-radius: 50%; content: ""; }
 .pattern-star { right: 4px; bottom: -32px; font-size: 136px; line-height: 1; }
 .pattern-sun { right: -25px; bottom: -67px; width: 160px; height: 160px; border: 1px solid currentColor; border-radius: 50%; background: repeating-conic-gradient(currentColor 0 2deg, transparent 2deg 12deg); }
-.draft-bar { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 19px auto 0; }
+.draft-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 1100px; margin: 19px auto 0; }
 .room-status { display: flex; align-items: center; gap: 9px; margin: 0; color: var(--cream-dim); font-size: 10px; }
 .status-dot { width: 7px; height: 7px; border: 1px solid var(--orange); border-radius: 50%; }
-.start-button { display: flex; min-width: 168px; align-items: center; justify-content: space-between; border: 0; padding: 14px 16px; background: #49463d; color: #a9a08e; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; cursor: not-allowed; }
+.start-button { display: flex; min-width: 168px; align-items: center; justify-content: space-between; border: 0; padding: 14px 16px; background: var(--orange); color: var(--ink); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; cursor: pointer; }
+.start-button:disabled { background: #49463d; color: #a9a08e; cursor: not-allowed; }
 .start-button span { font-size: 15px; }
 .coming-soon { margin: 18px 0 0; color: #817b6d; font-size: 8px; letter-spacing: .13em; text-align: center; }
+.player-setup { display: flex; align-items: end; gap: 9px; }
+.player-setup label { display: grid; gap: 6px; color: var(--cream-dim); font-size: 8px; letter-spacing: .1em; }
+.player-setup input { width: 130px; border: 1px solid var(--line); padding: 12px 10px; background: var(--ink); color: var(--cream); font-family: var(--body); font-size: 12px; letter-spacing: 0; }
+.player-setup input:focus { outline: 1px solid var(--orange); }
+.auction-screen { max-width: 1200px; min-height: calc(100vh - 155px); margin: auto; padding: 52px 7% 65px; }
+[hidden] { display: none !important; }
+.auction-topline, .auction-heading, .player-summary { display: flex; align-items: center; justify-content: space-between; }
+.auction-topline .eyebrow { margin: 0; }
+.return-link { border: 0; padding: 8px 0; background: none; color: var(--cream-dim); font-family: var(--mono); font-size: 9px; letter-spacing: .1em; cursor: pointer; }
+.return-link:hover { color: var(--orange); }
+.auction-heading { margin: 22px 0 25px; }
+.room-stamp, .song-progress, .bid-label, .controls-note, .song-tag { font-family: var(--mono); letter-spacing: .11em; }
+.room-stamp { margin: 0 0 7px; color: var(--orange); font-size: 9px; }
+.auction-heading h2 { font-size: clamp(38px, 5vw, 58px); }
+.song-progress { margin: 0; color: var(--orange); font-size: 11px; }
+.song-progress strong { font-size: 18px; }
+.song-progress span { color: var(--cream-dim); font-size: 9px; }
+.auction-layout { display: grid; grid-template-columns: 1.35fr .8fr; gap: 12px; }
+.current-song, .bid-panel { min-height: 275px; border: 1px solid var(--line); background: #292620; }
+.current-song { display: flex; align-items: center; gap: clamp(22px, 5vw, 60px); padding: clamp(22px, 5vw, 48px); background: #353126; }
+.album-art { position: relative; display: grid; width: min(42%, 220px); flex: 0 0 42%; aspect-ratio: 1; place-items: center; overflow: hidden; background: var(--orange); color: var(--ink); font-family: var(--display); font-size: clamp(22px, 4vw, 42px); font-weight: 900; line-height: .85; letter-spacing: -.08em; transform: rotate(-3deg); box-shadow: 7px 9px 0 rgba(0,0,0,.22); }
+.album-art::before, .album-art::after { position: absolute; width: 130%; height: 1px; background: rgba(32,30,26,.25); content: ""; transform: rotate(-35deg); }
+.album-art::after { transform: rotate(35deg); }
+.album-art span { position: relative; z-index: 1; }
+.album-art i { position: absolute; z-index: 2; width: 12px; height: 12px; border: 2px solid var(--ink); border-radius: 50%; }
+.song-info .eyebrow { margin: 0 0 12px; font-size: 8px; }
+.auction-star { padding-left: 8px; color: var(--cream); font-size: 15px; }
+.song-info h3 { margin: 0; font-family: var(--display); font-size: clamp(27px, 4vw, 42px); letter-spacing: -.05em; line-height: 1.05; }
+.artist-name { margin: 7px 0 26px; color: var(--cream-dim); font-size: 15px; }
+.song-tag { margin: 0; color: #a59b85; font-size: 8px; }
+.song-tag span { color: var(--orange); }
+.bid-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px; text-align: center; background: var(--ink-soft); }
+.bid-label { margin: 0; color: var(--cream-dim); font-size: 9px; }
+.bid-amount { margin: 0 0 8px; color: var(--orange); font-family: var(--display); font-size: clamp(68px, 9vw, 100px); font-weight: 900; letter-spacing: -.08em; line-height: 1; }
+.bid-amount span { font-size: inherit; }
+.turn-label { display: flex; align-items: center; gap: 8px; margin: 0; font-family: var(--mono); font-size: 9px; letter-spacing: .07em; }
+.turn-light { width: 7px; height: 7px; border-radius: 50%; background: #d7a54e; box-shadow: 0 0 10px #d7a54e; }
+.bid-buttons { display: flex; width: 100%; gap: 8px; margin-top: 19px; }
+.bid-buttons button { flex: 1; border: 1px solid #555044; padding: 12px 8px; background: #37342d; color: #817b6d; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; cursor: not-allowed; }
+.bid-buttons button span { color: var(--orange); }
+.controls-note { margin: 10px 0 0; color: #817b6d; font-size: 7px; }
+.players-lineups { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.player-board { border: 1px solid var(--line); padding: 18px 20px 14px; background: #292620; }
+.player-summary .eyebrow { margin: 0 0 5px; font-size: 8px; }
+.player-summary h3 { max-width: 230px; margin: 0; overflow: hidden; font-family: var(--display); font-size: 22px; text-overflow: ellipsis; white-space: nowrap; }
+.budget { margin: 0; color: var(--orange); font-family: var(--display); font-size: 27px; font-weight: 800; }
+.budget span { color: var(--cream-dim); font-family: var(--mono); font-size: 8px; letter-spacing: .1em; }
+.lineup { display: flex; flex-direction: column; gap: 5px; margin: 15px 0 0; padding: 0; list-style: none; }
+.lineup li { display: flex; align-items: center; gap: 12px; min-height: 30px; border-top: 1px solid rgba(241,231,211,.1); color: #817b6d; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; }
+.lineup li span:first-child { color: var(--orange); }
 .site-footer { min-height: 79px; border-top: 1px solid var(--line); }
 .site-footer > span, .back-top { color: #908875; font-size: 8px; letter-spacing: .1em; }
 .back-top { text-decoration: none; }
@@ -116,8 +167,23 @@ h2 em { color: var(--orange); font-weight: 700; }
   .room-index { font-size: 7px; }
   .room-name { font-size: clamp(21px, 7vw, 28px); }
   .draft-bar { align-items: stretch; flex-direction: column; gap: 15px; }
-  .start-button { width: 100%; }
+  .player-setup { display: grid; grid-template-columns: 1fr 1fr; }
+  .player-setup label { min-width: 0; }
+  .player-setup input { width: 100%; }
+  .player-setup .start-button { grid-column: 1 / -1; width: 100%; }
   .coming-soon { max-width: 280px; margin: 16px auto 0; line-height: 1.7; }
   .site-footer { min-height: 72px; }
   .site-footer > span { display: none; }
+  .auction-screen { padding: 35px 6% 45px; }
+  .auction-topline { align-items: flex-start; gap: 12px; }
+  .auction-topline .eyebrow { font-size: 8px; }
+  .return-link { font-size: 8px; }
+  .auction-heading { align-items: flex-end; gap: 10px; }
+  .song-progress { max-width: 105px; text-align: right; line-height: 1.6; }
+  .auction-layout, .players-lineups { grid-template-columns: 1fr; }
+  .current-song { min-height: 210px; gap: 20px; padding: 22px; }
+  .album-art { width: min(42%, 180px); flex-basis: 42%; }
+  .artist-name { margin-bottom: 16px; }
+  .bid-panel { min-height: 230px; }
+  .player-board { padding: 16px; }
 }
