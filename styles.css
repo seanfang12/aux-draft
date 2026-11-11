@@ -88,51 +88,55 @@ h2 em { color: var(--orange); font-weight: 700; }
 .player-setup label { display: grid; gap: 6px; color: var(--cream-dim); font-size: 8px; letter-spacing: .1em; }
 .player-setup input { width: 130px; border: 1px solid var(--line); padding: 12px 10px; background: var(--ink); color: var(--cream); font-family: var(--body); font-size: 12px; letter-spacing: 0; }
 .player-setup input:focus { outline: 1px solid var(--orange); }
-.auction-screen { max-width: 1200px; min-height: calc(100vh - 155px); margin: auto; padding: 52px 7% 65px; }
+.auction-screen { max-width: 1200px; min-height: calc(100vh - 155px); margin: auto; padding: 48px 7% 62px; }
 [hidden] { display: none !important; }
 .auction-topline, .auction-heading, .player-summary { display: flex; align-items: center; justify-content: space-between; }
 .auction-topline .eyebrow { margin: 0; }
 .return-link { border: 0; padding: 8px 0; background: none; color: var(--cream-dim); font-family: var(--mono); font-size: 9px; letter-spacing: .1em; cursor: pointer; }
 .return-link:hover { color: var(--orange); }
-.auction-heading { margin: 22px 0 25px; }
+.auction-heading { margin: 20px 0 15px; }
 .room-stamp, .song-progress, .bid-label, .controls-note, .song-tag { font-family: var(--mono); letter-spacing: .11em; }
 .room-stamp { margin: 0 0 7px; color: var(--orange); font-size: 9px; }
 .auction-heading h2 { font-size: clamp(38px, 5vw, 58px); }
 .song-progress { margin: 0; color: var(--orange); font-size: 11px; }
 .song-progress strong { font-size: 18px; }
 .song-progress span { color: var(--cream-dim); font-size: 9px; }
-.auction-layout { display: grid; grid-template-columns: 1.35fr .8fr; gap: 12px; }
-.current-song, .bid-panel { min-height: 275px; border: 1px solid var(--line); background: #292620; }
-.current-song { display: flex; align-items: center; gap: clamp(22px, 5vw, 60px); padding: clamp(22px, 5vw, 48px); background: #353126; }
-.album-art { position: relative; display: grid; width: min(42%, 220px); flex: 0 0 42%; aspect-ratio: 1; place-items: center; overflow: hidden; background: var(--orange); color: var(--ink); font-family: var(--display); font-size: clamp(22px, 4vw, 42px); font-weight: 900; line-height: .85; letter-spacing: -.08em; transform: rotate(-3deg); box-shadow: 7px 9px 0 rgba(0,0,0,.22); }
-.album-art::before, .album-art::after { position: absolute; width: 130%; height: 1px; background: rgba(32,30,26,.25); content: ""; transform: rotate(-35deg); }
-.album-art::after { transform: rotate(35deg); }
-.album-art span { position: relative; z-index: 1; }
-.album-art i { position: absolute; z-index: 2; width: 12px; height: 12px; border: 2px solid var(--ink); border-radius: 50%; }
-.song-info .eyebrow { margin: 0 0 12px; font-size: 8px; }
+.auction-layout { display: grid; grid-template-columns: 1.5fr .7fr; align-items: center; gap: clamp(24px, 5vw, 66px); }
+.current-song { display: flex; min-height: 330px; align-items: center; gap: clamp(28px, 6vw, 76px); padding: 20px 0 30px 12px; }
+.album-art { position: relative; z-index: 1; display: grid; width: min(48%, 300px); flex: 0 0 48%; aspect-ratio: 1; place-items: center; overflow: visible; background: #c86238; color: var(--ink); font-family: var(--display); font-size: clamp(23px, 4vw, 44px); font-weight: 900; line-height: .85; letter-spacing: -.08em; transform: rotate(-4deg); box-shadow: 8px 10px 0 rgba(0,0,0,.24); }
+.album-art::before { position: absolute; inset: 12px; border: 1px solid rgba(32,30,26,.38); content: ""; }
+.album-title-mark { position: relative; z-index: 2; margin: 20px 0 0 5px; }
+.mini-record { position: absolute; z-index: -1; top: 17%; right: -29%; display: grid; width: 75%; aspect-ratio: 1; place-items: center; border: 1px solid rgba(241,231,211,.27); border-radius: 50%; background: #1b1a17; box-shadow: 5px 7px 13px rgba(0,0,0,.3), inset 0 0 0 5px #292722, inset 0 0 0 7px #1b1a17, inset 0 0 0 10px #292722, inset 0 0 0 12px #1b1a17, inset 0 0 0 16px #292722, inset 0 0 0 18px #1b1a17; }
+.mini-record::before { position: absolute; inset: 14%; border: 1px solid rgba(241,231,211,.13); border-radius: 50%; content: ""; }
+.mini-record i { width: 20%; aspect-ratio: 1; border: 1px solid var(--ink); border-radius: 50%; background: var(--orange); }
+.album-center { position: absolute; z-index: 3; width: 9px; height: 9px; border: 2px solid var(--ink); border-radius: 50%; background: var(--cream); }
+.song-info { position: relative; z-index: 2; min-width: 0; }
+.song-info .eyebrow { margin: 0 0 15px; font-size: 8px; }
 .auction-star { padding-left: 8px; color: var(--cream); font-size: 15px; }
-.song-info h3 { margin: 0; font-family: var(--display); font-size: clamp(27px, 4vw, 42px); letter-spacing: -.05em; line-height: 1.05; }
-.artist-name { margin: 7px 0 26px; color: var(--cream-dim); font-size: 15px; }
+.song-info h3 { max-width: 430px; margin: 0; font-family: var(--display); font-size: clamp(32px, 4.5vw, 54px); letter-spacing: -.055em; line-height: 1; }
+.artist-name { margin: 10px 0 30px; color: var(--cream-dim); font-size: clamp(16px, 2vw, 20px); }
 .song-tag { margin: 0; color: #a59b85; font-size: 8px; }
 .song-tag span { color: var(--orange); }
-.bid-panel { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px; text-align: center; background: var(--ink-soft); }
+.bid-panel { position: relative; display: flex; min-height: 270px; flex-direction: column; align-items: center; justify-content: center; padding: 22px 15px; text-align: center; }
 .bid-label { margin: 0; color: var(--cream-dim); font-size: 9px; }
-.bid-amount { margin: 0 0 8px; color: var(--orange); font-family: var(--display); font-size: clamp(68px, 9vw, 100px); font-weight: 900; letter-spacing: -.08em; line-height: 1; }
+.bid-amount { margin: 1px 0 8px; color: var(--orange); font-family: var(--display); font-size: clamp(78px, 10vw, 112px); font-weight: 900; letter-spacing: -.08em; line-height: 1; }
 .bid-amount span { font-size: inherit; }
 .turn-label { display: flex; align-items: center; gap: 8px; margin: 0; font-family: var(--mono); font-size: 9px; letter-spacing: .07em; }
 .turn-light { width: 7px; height: 7px; border-radius: 50%; background: #d7a54e; box-shadow: 0 0 10px #d7a54e; }
 .bid-buttons { display: flex; width: 100%; gap: 8px; margin-top: 19px; }
-.bid-buttons button { flex: 1; border: 1px solid #555044; padding: 12px 8px; background: #37342d; color: #817b6d; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; cursor: not-allowed; }
+.bid-buttons button { flex: 1; border: 1px solid #655d4d; padding: 13px 8px; background: transparent; color: #a59b85; font-family: var(--mono); font-size: 9px; letter-spacing: .08em; cursor: not-allowed; }
+.bid-buttons button:last-child { border-color: var(--orange); background: var(--orange); color: var(--ink); }
 .bid-buttons button span { color: var(--orange); }
 .controls-note { margin: 10px 0 0; color: #817b6d; font-size: 7px; }
-.players-lineups { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
-.player-board { border: 1px solid var(--line); padding: 18px 20px 14px; background: #292620; }
+.players-lineups { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px); margin-top: 16px; padding-top: 19px; border-top: 1px solid var(--line); }
+.player-board { min-width: 0; padding: 0; }
 .player-summary .eyebrow { margin: 0 0 5px; font-size: 8px; }
 .player-summary h3 { max-width: 230px; margin: 0; overflow: hidden; font-family: var(--display); font-size: 22px; text-overflow: ellipsis; white-space: nowrap; }
 .budget { margin: 0; color: var(--orange); font-family: var(--display); font-size: 27px; font-weight: 800; }
 .budget span { color: var(--cream-dim); font-family: var(--mono); font-size: 8px; letter-spacing: .1em; }
-.lineup { display: flex; flex-direction: column; gap: 5px; margin: 15px 0 0; padding: 0; list-style: none; }
-.lineup li { display: flex; align-items: center; gap: 12px; min-height: 30px; border-top: 1px solid rgba(241,231,211,.1); color: #817b6d; font-family: var(--mono); font-size: 8px; letter-spacing: .1em; }
+.lineup { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 13px 0 0; padding: 0; list-style: none; }
+.lineup li { display: flex; min-height: 47px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 5px; border-top: 1px solid rgba(241,231,211,.2); padding: 6px 3px 0; color: #817b6d; font-family: var(--mono); font-size: 7px; letter-spacing: .06em; }
+.lineup li span:first-child { color: var(--orange); font-size: 8px; }
 .lineup li span:first-child { color: var(--orange); }
 .site-footer { min-height: 79px; border-top: 1px solid var(--line); }
 .site-footer > span, .back-top { color: #908875; font-size: 8px; letter-spacing: .1em; }
@@ -186,4 +190,173 @@ h2 em { color: var(--orange); font-weight: 700; }
   .artist-name { margin-bottom: 16px; }
   .bid-panel { min-height: 230px; }
   .player-board { padding: 16px; }
+}
+
+/* Auction screen: a brighter, more compact game layout. */
+#auction-screen {
+  max-width: none;
+  min-height: calc(100vh - 155px);
+  padding: 27px max(6%, calc((100% - 1100px) / 2)) 32px;
+  background: #e8deca;
+  color: var(--ink);
+}
+#auction-screen .auction-topline .eyebrow,
+#auction-screen .room-stamp,
+#auction-screen .song-info .eyebrow,
+#auction-screen .player-summary .eyebrow { color: #a94c2d; }
+#auction-screen .return-link { color: #514b3e; }
+#auction-screen .return-link:hover { color: #a94c2d; }
+#auction-screen .auction-heading { margin: 12px 0 8px; }
+#auction-screen .auction-heading h2 { font-size: clamp(34px, 4vw, 46px); }
+#auction-screen .auction-heading h2 em { color: #a94c2d; }
+#auction-screen .song-progress { color: #a94c2d; }
+#auction-screen .song-progress span { color: #625b4e; }
+#auction-screen .auction-layout { grid-template-columns: 1.25fr .75fr; gap: 22px; }
+#auction-screen .current-song {
+  min-height: 250px;
+  gap: clamp(24px, 4vw, 52px);
+  padding: 8px 0 12px 10px;
+}
+#auction-screen .album-art {
+  width: min(41%, 235px);
+  flex-basis: 41%;
+  box-shadow: 5px 6px 0 rgba(32,30,26,.16);
+}
+#auction-screen .mini-record {
+  top: 18%;
+  right: -17%;
+  width: 58%;
+  opacity: .62;
+}
+#auction-screen .song-info h3 { color: var(--ink); font-size: clamp(29px, 3.8vw, 45px); }
+#auction-screen .artist-name { margin: 8px 0 18px; color: #514b3e; font-size: 17px; }
+#auction-screen .song-tag { color: #716855; }
+#auction-screen .bid-panel {
+  min-height: 230px;
+  padding: 14px 22px;
+  background: #d9e0d1;
+}
+#auction-screen .bid-label,
+#auction-screen .turn-label { color: #343a32; }
+#auction-screen .bid-amount { margin: 0 0 2px; color: #a94c2d; font-size: clamp(68px, 8vw, 88px); }
+#auction-screen .turn-light { background: #788b70; box-shadow: none; }
+#auction-screen .bid-buttons { max-width: 330px; margin-top: 13px; }
+#auction-screen .bid-buttons button {
+  border-color: #778773;
+  border-radius: 2px;
+  padding: 11px 8px;
+  color: #465344;
+}
+#auction-screen .bid-buttons button:last-child { border-color: var(--orange); background: var(--orange); color: var(--ink); }
+#auction-screen .controls-note { color: #64705e; }
+#auction-screen .players-lineups {
+  gap: 28px;
+  margin-top: 8px;
+  padding-top: 13px;
+  border-color: rgba(32,30,26,.2);
+}
+#auction-screen .player-summary { align-items: center; }
+#auction-screen .player-summary h3 { color: var(--ink); font-family: var(--body); font-size: 16px; font-weight: 700; letter-spacing: 0; }
+#auction-screen .player-summary .eyebrow { margin-bottom: 3px; }
+#auction-screen .budget { color: #a94c2d; font-family: var(--body); font-size: 20px; font-weight: 700; }
+#auction-screen .budget span { color: #625b4e; font-size: 8px; }
+#auction-screen .lineup { gap: 5px; margin-top: 8px; }
+#auction-screen .lineup li {
+  min-height: 31px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  border: 0;
+  border-radius: 2px;
+  padding: 5px 6px;
+  background: rgba(255,255,255,.48);
+  color: #756e60;
+  font-size: 6px;
+}
+#auction-screen .lineup li span:first-child { font-size: 7px; }
+
+@media (max-width: 760px) {
+  #auction-screen { padding: 25px 6% 32px; }
+  #auction-screen .auction-layout { gap: 15px; }
+  #auction-screen .current-song { min-height: 210px; }
+  #auction-screen .bid-panel { min-height: 210px; }
+  #auction-screen .players-lineups { gap: 18px; }
+}
+
+@media (max-width: 520px) {
+  #auction-screen { padding: 22px 6% 28px; }
+  #auction-screen .auction-heading { margin: 13px 0 7px; }
+  #auction-screen .auction-layout { gap: 8px; }
+  #auction-screen .current-song { min-height: 190px; gap: 20px; padding: 8px 0 14px 5px; }
+  #auction-screen .album-art { width: min(39%, 160px); flex-basis: 39%; }
+  #auction-screen .mini-record { right: -13%; width: 48%; }
+  #auction-screen .song-info h3 { font-size: clamp(27px, 8vw, 36px); }
+  #auction-screen .artist-name { margin: 7px 0 14px; font-size: 15px; }
+  #auction-screen .bid-panel { min-height: 200px; }
+  #auction-screen .players-lineups { gap: 16px; margin-top: 14px; }
+  #auction-screen .lineup { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  #auction-screen .lineup li { min-height: 34px; flex-direction: column; align-items: flex-start; gap: 3px; padding: 5px 4px; }
+}
+
+/* Keep the auction focused on the song, the turn, and the players. */
+#auction-screen {
+  background: #24221f;
+  color: var(--cream);
+  padding-top: 22px;
+  padding-bottom: 26px;
+}
+#auction-screen .auction-topline { min-height: 22px; }
+#auction-screen .room-stamp { margin: 0; color: var(--orange); font-size: 10px; }
+#auction-screen .return-link { color: var(--cream-dim); }
+#auction-screen .auction-heading { margin: 8px 0 4px; }
+#auction-screen .auction-heading h2 { color: var(--cream); font-size: clamp(29px, 3.2vw, 38px); }
+#auction-screen .auction-heading h2 em { color: var(--orange); }
+#auction-screen .song-progress { color: var(--cream-dim); font-family: var(--mono); font-size: 12px; }
+#auction-screen .auction-layout { grid-template-columns: 1.25fr .75fr; gap: 18px; }
+#auction-screen .current-song { min-height: 225px; gap: clamp(22px, 4vw, 48px); padding: 8px 0 10px 9px; }
+#auction-screen .album-art { width: min(38%, 220px); flex-basis: 38%; }
+#auction-screen .mini-record { right: -12%; width: 49%; opacity: .35; }
+#auction-screen .song-info h3 { color: var(--cream); font-size: clamp(30px, 4vw, 46px); }
+#auction-screen .artist-name { margin: 9px 0 0; color: var(--cream-dim); font-size: 16px; }
+#auction-screen .bid-panel { min-height: 215px; padding: 14px 18px; background: #302d27; }
+#auction-screen .turn-label { order: 0; margin-bottom: 2px; color: var(--cream); font-size: 10px; }
+#auction-screen .turn-light { background: #929b78; }
+#auction-screen .bid-amount { order: 1; margin: 0; color: var(--orange); font-size: clamp(64px, 7vw, 82px); }
+#auction-screen .bid-label { order: 2; margin: -3px 0 0; color: var(--cream-dim); font-size: 8px; }
+#auction-screen .bid-buttons { order: 3; max-width: 310px; margin-top: 12px; }
+#auction-screen .bid-buttons button { border-radius: 0; border-color: #716b5d; color: var(--cream); }
+#auction-screen .bid-buttons button:last-child { border-color: var(--orange); background: var(--orange); color: var(--ink); }
+#auction-screen .players-lineups { gap: 30px; margin-top: 4px; padding-top: 10px; border-color: rgba(241,231,211,.18); }
+#auction-screen .player-summary { min-height: 25px; }
+#auction-screen .player-summary h3 { color: var(--cream); font-size: 15px; }
+#auction-screen .budget { color: var(--orange); font-size: 18px; }
+#auction-screen .lineup { grid-template-columns: repeat(5, 30px); gap: 5px; margin-top: 6px; }
+#auction-screen .lineup li,
+#auction-screen .lineup li span:first-child {
+  min-height: 23px;
+  justify-content: center;
+  border: 1px solid rgba(241,231,211,.24);
+  border-radius: 50%;
+  padding: 0;
+  background: transparent;
+  color: var(--cream-dim);
+  font-size: 8px;
+}
+
+@media (max-width: 760px) {
+  #auction-screen { padding: 22px 6% 28px; }
+  #auction-screen .auction-layout { gap: 12px; }
+  #auction-screen .players-lineups { gap: 18px; }
+}
+@media (max-width: 520px) {
+  #auction-screen .auction-heading { margin: 9px 0 5px; }
+  #auction-screen .auction-heading h2 { font-size: 30px; }
+  #auction-screen .current-song { min-height: 170px; }
+  #auction-screen .album-art { width: min(39%, 150px); flex-basis: 39%; }
+  #auction-screen .mini-record { right: -10%; width: 43%; }
+  #auction-screen .song-info h3 { font-size: clamp(25px, 7vw, 34px); }
+  #auction-screen .artist-name { font-size: 14px; }
+  #auction-screen .players-lineups { gap: 14px; margin-top: 11px; }
+  #auction-screen .player-summary h3 { max-width: 125px; font-size: 13px; }
 }
