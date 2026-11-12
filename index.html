@@ -92,7 +92,8 @@
           <section class="bid-panel" aria-label="Current bid and bidding controls">
             <p class="turn-label"><span class="turn-light"></span><span id="turn-text">Your turn, Player One!</span></p><p class="bid-amount">$<span id="bid-amount">1</span></p><p class="bid-label" id="bid-label">SONG PRICE</p><p class="bid-status" id="bid-status" aria-live="polite">No bids yet.</p><p class="bid-limit-note" id="bid-limit-note" hidden></p>
             <p class="round-message" id="round-message" aria-live="polite" hidden></p>
-            <div class="bid-buttons"><button type="button" id="pass-button" disabled>Skip This Song</button><button type="button" id="bid-button" disabled>Bid $1</button></div>
+            <p class="bid-error" id="bid-error" aria-live="polite" hidden></p>
+            <div class="bid-buttons"><button type="button" id="pass-button" disabled>Skip This Song</button><div class="place-bid-controls"><label class="visually-hidden" for="bid-input">Your bid in dollars</label><span aria-hidden="true">$</span><input id="bid-input" type="number" min="1" step="1" inputmode="numeric" value="1" disabled><button type="button" id="bid-button" disabled>Place Bid</button></div></div>
           </section>
         </div>
         <div class="players-lineups">

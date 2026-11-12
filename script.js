@@ -16,10 +16,12 @@ const albumArt = document.querySelector("#album-art");
 const albumArtImage = document.querySelector("#album-art-image");
 const passButton = document.querySelector("#pass-button");
 const bidButton = document.querySelector("#bid-button");
+const bidInput = document.querySelector("#bid-input");
 const bidAmount = document.querySelector("#bid-amount");
 const bidLabel = document.querySelector("#bid-label");
 const bidStatus = document.querySelector("#bid-status");
 const bidLimitNote = document.querySelector("#bid-limit-note");
+const bidError = document.querySelector("#bid-error");
 const turnText = document.querySelector("#turn-text");
 const roundMessage = document.querySelector("#round-message");
 const playersResults = document.querySelector("#results-players");
@@ -574,9 +576,16 @@ function canPlayerRaiseBid(playerIndex) {
   const player = players[playerIndex];
   if (!player || player.songs.length >= 5 || declinedPlayers[playerIndex]) return false;
 
-  const nextBid = currentBid === 0 ? 1 : currentBid + 1;
+  return getMaximumBid(player) >= getMinimumBid();
+}
+
+function getMinimumBid() {
+  return currentBid === 0 ? 1 : currentBid + 1;
+}
+
+function getMaximumBid(player) {
   const emptySlotsAfterWinning = 5 - (player.songs.length + 1);
-  return player.budget - nextBid >= emptySlotsAfterWinning;
+  return player.budget - emptySlotsAfterWinning;
 }
 
 function updateAuctionScreen() {
@@ -587,12 +596,15 @@ function updateAuctionScreen() {
 
   document.querySelector("#song-progress").textContent = `${currentSongIndex + 1} / 10`;
   bidAmount.textContent = currentBid === 0 ? "1" : String(currentBid);
+  bidInput.min = String(getMinimumBid());
+  bidInput.max = String(getMaximumBid(players[currentTurnIndex]));
+  bidInput.value = String(getMinimumBid());
   bidLabel.textContent = "SONG PRICE";
   turnText.textContent = `Your turn, ${players[currentTurnIndex].name}!`;
   bidStatus.textContent = highBidderIndex === null
     ? "No bids yet."
     : `${players[highBidderIndex].name} is winning at $${currentBid}.`;
-  bidButton.textContent = `Bid $${currentBid === 0 ? 1 : currentBid + 1}`;
+  bidButton.textContent = "Place Bid";
   passButton.textContent = highBidderIndex === null ? "Skip This Song" : "Let Them Have It";
 
   setAuctionControlsEnabled(true);
@@ -605,11 +617,14 @@ function updateAuctionScreen() {
     bidLimitNote.hidden = false;
   }
   roundMessage.hidden = true;
+  bidError.hidden = true;
+  bidError.textContent = "";
 }
 
 function setAuctionControlsEnabled(enabled) {
   passButton.disabled = !enabled;
   bidButton.disabled = !enabled;
+  bidInput.disabled = !enabled;
 }
 
 function beginCurrentSong() {
@@ -659,6 +674,8 @@ function awardSong(winnerIndex, price, reason = "") {
   renderPlayerLineups();
   roundMessage.textContent = reason || `${winner.name} wins “${song.trackName}” for $${price}.`;
   roundMessage.hidden = false;
+  bidError.textContent = "";
+  bidError.hidden = true;
   setAuctionControlsEnabled(false);
   saveDraft();
 
@@ -672,7 +689,26 @@ function awardSong(winnerIndex, price, reason = "") {
 function bidOnSong() {
   if (!gameReady || !artworkReady || roundIsResolving || !canPlayerRaiseBid(currentTurnIndex)) return;
 
-  currentBid = currentBid === 0 ? 1 : currentBid + 1;
+  const enteredBid = bidInput.value.trim();
+  const proposedBid = Number(enteredBid);
+  const minimumBid = getMinimumBid();
+  const maximumBid = getMaximumBid(players[currentTurnIndex]);
+
+  if (!/^\d+$/.test(enteredBid) || !Number.isSafeInteger(proposedBid) || proposedBid < minimumBid) {
+    bidError.textContent = `Enter a whole-dollar bid of at least $${minimumBid}.`;
+    bidError.hidden = false;
+    return;
+  }
+
+  if (proposedBid > maximumBid) {
+    bidError.textContent = `Your highest allowed bid is $${maximumBid}. Keep $${5 - (players[currentTurnIndex].songs.length + 1)} for your remaining songs.`;
+    bidError.hidden = false;
+    return;
+  }
+
+  bidError.hidden = true;
+  bidError.textContent = "";
+  currentBid = proposedBid;
   highBidderIndex = currentTurnIndex;
   currentTurnIndex = 1 - currentTurnIndex;
   openingPassCount = 0;
@@ -716,6 +752,10 @@ function passOnSong() {
 }
 
 bidButton.addEventListener("click", bidOnSong);
+bidInput.addEventListener("input", () => {
+  bidError.hidden = true;
+  bidError.textContent = "";
+});
 passButton.addEventListener("click", passOnSong);
 
 function renderPlayerLineups() {
