@@ -312,6 +312,7 @@ h2 em { color: var(--orange); font-weight: 700; }
 #auction-screen .auction-heading { margin: 8px 0 4px; }
 #auction-screen .auction-heading h2 { color: var(--cream); font-size: clamp(29px, 3.2vw, 38px); }
 #auction-screen .auction-heading h2 em { color: var(--orange); }
+#auction-screen .auction-instructions { margin: 6px 0 0; color: var(--cream-dim); font-size: 13px; }
 #auction-screen .song-progress { color: var(--cream-dim); font-family: var(--mono); font-size: 12px; }
 #auction-screen .auction-layout { grid-template-columns: 1.25fr .75fr; gap: 18px; }
 #auction-screen .current-song { min-height: 225px; gap: clamp(22px, 4vw, 48px); padding: 8px 0 10px 9px; }
@@ -320,17 +321,20 @@ h2 em { color: var(--orange); font-weight: 700; }
 #auction-screen .song-info h3 { color: var(--cream); font-size: clamp(30px, 4vw, 46px); }
 #auction-screen .artist-name { margin: 9px 0 0; color: var(--cream-dim); font-size: 16px; }
 #auction-screen .bid-panel { min-height: 215px; padding: 14px 18px; background: #302d27; }
-#auction-screen .turn-label { order: 0; margin-bottom: 2px; color: var(--cream); font-size: 10px; }
+#auction-screen .turn-label { order: 0; margin-bottom: 2px; color: var(--cream); font-family: var(--body); font-size: 15px; font-weight: 700; letter-spacing: 0; }
 #auction-screen .turn-light { background: #929b78; }
 #auction-screen .bid-amount { order: 1; margin: 0; color: var(--orange); font-size: clamp(64px, 7vw, 82px); }
 #auction-screen .bid-label { order: 2; margin: -3px 0 0; color: var(--cream-dim); font-size: 8px; }
-#auction-screen .bid-buttons { order: 3; max-width: 310px; margin-top: 12px; }
-#auction-screen .bid-buttons button { border-radius: 0; border-color: #716b5d; color: var(--cream); }
+#auction-screen .bid-status { order: 3; margin: 5px 0 0; color: var(--cream); font-family: var(--body); font-size: 13px; }
+#auction-screen .bid-limit-note { order: 4; margin: 4px 0 0; color: var(--cream-dim); font-size: 10px; }
+#auction-screen .round-message { order: 5; }
+#auction-screen .bid-buttons { order: 6; max-width: 310px; margin-top: 12px; }
+#auction-screen .bid-buttons button { border-radius: 0; border-color: #716b5d; color: var(--cream); text-transform: none; }
 #auction-screen .bid-buttons button:last-child { border-color: var(--orange); background: var(--orange); color: var(--ink); }
 #auction-screen .players-lineups { gap: 30px; margin-top: 4px; padding-top: 10px; border-color: rgba(241,231,211,.18); }
-#auction-screen .player-summary { min-height: 25px; }
+#auction-screen .player-summary { min-height: 25px; align-items: flex-start; }
 #auction-screen .player-summary h3 { color: var(--cream); font-size: 15px; }
-#auction-screen .budget { color: var(--orange); font-size: 18px; }
+#auction-screen .budget { margin: 3px 0 0; color: var(--orange); font-family: var(--body); font-size: 12px; font-weight: 600; }
 #auction-screen .lineup { grid-template-columns: repeat(5, 30px); gap: 5px; margin-top: 6px; }
 #auction-screen .lineup li,
 #auction-screen .lineup li span:first-child {
@@ -424,4 +428,27 @@ h2 em { color: var(--orange); font-weight: 700; }
   #auction-screen .results-players { flex-direction: column; gap: 22px; }
   #auction-screen .results-screen > h2 { font-size: 34px; }
   #auction-screen .result-lineup img { width: 36px; height: 36px; flex-basis: 36px; }
+}
+
+.saved-draft-prompt { display: flex; align-items: center; justify-content: space-between; gap: 14px; max-width: 1100px; margin: 18px auto 0; border-left: 2px solid var(--orange); padding: 11px 14px; background: rgba(241,231,211,.06); }
+.saved-draft-prompt p { margin: 0; color: var(--cream); font-size: 12px; }
+.hero-copy .saved-draft-prompt { align-items: flex-start; flex-direction: column; width: 100%; margin: 17px 0 0; }
+.saved-draft-actions { display: flex; align-items: center; gap: 14px; }
+.saved-draft-actions .start-button { min-width: 145px; padding: 10px 12px; }
+.fresh-draft-link { border: 0; padding: 8px 0; background: none; color: var(--cream-dim); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; cursor: pointer; }
+.fresh-draft-link:hover { color: var(--orange); }
+.results-actions { display: flex; align-items: center; gap: 15px; }
+.copy-results-wrap { display: flex; align-items: center; gap: 10px; }
+.copy-results-button { margin-top: 20px; border: 1px solid var(--cream-dim); padding: 13px 15px; background: transparent; color: var(--cream); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; cursor: pointer; }
+.copy-results-button:hover { border-color: var(--orange); color: var(--orange); }
+#copy-status { max-width: 220px; margin: 20px 0 0; color: var(--cream-dim); font-size: 11px; line-height: 1.4; }
+@media (max-width: 760px) {
+  .saved-draft-prompt { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 520px) {
+  .saved-draft-actions { width: 100%; }
+  .saved-draft-actions .start-button { flex: 1; }
+  .results-actions { align-items: flex-start; flex-direction: column; gap: 0; }
+  .copy-results-button { margin-top: 10px; }
+  #copy-status { margin-top: 10px; }
 }

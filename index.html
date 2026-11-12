@@ -27,6 +27,13 @@
         <h1 id="page-title">AUX<br><span>DRAFT</span><span class="title-period">.</span></h1>
         <p class="tagline">$20. Five songs. One winning lineup.</p>
         <p class="intro">The aux is up for grabs. You and a friend get twenty bucks in pretend cash to build a five-song set, one track at a time. Make every pick count. Then let the music do the talking.</p>
+        <div class="saved-draft-prompt" id="saved-draft-prompt" hidden>
+          <p id="saved-draft-message">An unfinished draft is saved.</p>
+          <div class="saved-draft-actions">
+            <button class="start-button" id="resume-saved-draft" type="button">RESUME DRAFT <span aria-hidden="true">↗</span></button>
+            <button class="fresh-draft-link" id="start-fresh-draft" type="button">START FRESH</button>
+          </div>
+        </div>
         <a class="text-link" href="#rooms">FIND YOUR ROOM <span aria-hidden="true">↓</span></a>
       </div>
 
@@ -76,27 +83,30 @@
     <section class="auction-screen" id="auction-screen" aria-labelledby="auction-title" hidden>
       <div class="auction-topline"><p class="room-stamp" id="auction-genre">GENRE ROOM</p><button class="return-link" id="return-home" type="button">← GENRE SELECTION</button></div>
       <div id="game-view">
-        <div class="auction-heading"><h2 id="auction-title">Name your <em>price.</em></h2><p class="song-progress" id="song-progress">1 / 10</p></div>
+        <div class="auction-heading"><div><h2 id="auction-title">You each have <em>$20.</em></h2><p class="auction-instructions">Bid on songs to build your 5-song playlist.</p></div><p class="song-progress" id="song-progress">1 / 10</p></div>
         <div class="auction-layout">
           <section class="current-song" aria-label="Current song">
             <div class="album-art" id="album-art" aria-label="Album artwork"><img id="album-art-image" alt="" hidden></div>
             <div class="song-info"><h3 id="song-title"></h3><p class="artist-name" id="song-artist"></p><p id="song-status" class="song-status" aria-live="polite" hidden></p><button id="retry-song" class="retry-button" type="button" hidden>TRY AGAIN ↻</button></div>
           </section>
           <section class="bid-panel" aria-label="Current bid and bidding controls">
-            <p class="turn-label"><span class="turn-light"></span><span id="turn-text">PLAYER ONE’S TURN</span></p><p class="bid-amount">$<span id="bid-amount">1</span></p><p class="bid-label" id="bid-label">STARTING BID</p>
+            <p class="turn-label"><span class="turn-light"></span><span id="turn-text">Your turn, Player One!</span></p><p class="bid-amount">$<span id="bid-amount">1</span></p><p class="bid-label" id="bid-label">SONG PRICE</p><p class="bid-status" id="bid-status" aria-live="polite">No bids yet.</p><p class="bid-limit-note" id="bid-limit-note" hidden></p>
             <p class="round-message" id="round-message" aria-live="polite" hidden></p>
-            <div class="bid-buttons"><button type="button" id="pass-button" disabled>PASS</button><button type="button" id="bid-button" disabled>BID $1 <span>↗</span></button></div>
+            <div class="bid-buttons"><button type="button" id="pass-button" disabled>Skip This Song</button><button type="button" id="bid-button" disabled>Bid $1</button></div>
           </section>
         </div>
         <div class="players-lineups">
-          <section class="player-board"><div class="player-summary"><h3 id="player-one-name">PLAYER ONE</h3><p class="budget" id="player-one-budget">$20</p></div><ol class="lineup" id="player-one-lineup" aria-label="Player one's five song lineup"><li><span>1</span></li><li><span>2</span></li><li><span>3</span></li><li><span>4</span></li><li><span>5</span></li></ol></section>
-          <section class="player-board"><div class="player-summary"><h3 id="player-two-name">PLAYER TWO</h3><p class="budget" id="player-two-budget">$20</p></div><ol class="lineup" id="player-two-lineup" aria-label="Player two's five song lineup"><li><span>1</span></li><li><span>2</span></li><li><span>3</span></li><li><span>4</span></li><li><span>5</span></li></ol></section>
+          <section class="player-board"><div class="player-summary"><div><h3 id="player-one-name">PLAYER ONE</h3><p class="budget" id="player-one-budget">$20 left · 0/5 songs</p></div></div><ol class="lineup" id="player-one-lineup" aria-label="Player one's five song lineup"><li><span>1</span></li><li><span>2</span></li><li><span>3</span></li><li><span>4</span></li><li><span>5</span></li></ol></section>
+          <section class="player-board"><div class="player-summary"><div><h3 id="player-two-name">PLAYER TWO</h3><p class="budget" id="player-two-budget">$20 left · 0/5 songs</p></div></div><ol class="lineup" id="player-two-lineup" aria-label="Player two's five song lineup"><li><span>1</span></li><li><span>2</span></li><li><span>3</span></li><li><span>4</span></li><li><span>5</span></li></ol></section>
         </div>
       </div>
       <section class="results-screen" id="results-screen" aria-labelledby="results-title" hidden>
         <h2 id="results-title">The final <em>cut.</em></h2>
         <div class="results-players" id="results-players"></div>
-        <button class="start-button new-draft-button" type="button" id="new-draft">DRAFT AGAIN <span aria-hidden="true">↗</span></button>
+        <div class="results-actions">
+          <button class="start-button new-draft-button" type="button" id="new-draft">DRAFT AGAIN <span aria-hidden="true">↗</span></button>
+          <div class="copy-results-wrap"><button class="copy-results-button" type="button" id="copy-results">COPY RESULTS</button><p id="copy-status" aria-live="polite" hidden></p></div>
+        </div>
       </section>
     </section>
   </main>
