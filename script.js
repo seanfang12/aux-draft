@@ -25,6 +25,7 @@ const playersResults = document.querySelector("#results-players");
 let selectedRoom = "";
 let players = [];
 let draftSongs = [];
+let previousGameSongKeys = [];
 let currentSongIndex = 0;
 let currentBid = 0;
 let highBidderIndex = null;
@@ -82,6 +83,42 @@ function normalizeText(text) {
     .replace(/[^a-z0-9]/g, "");
 }
 
+function getSongKey(song) {
+  return `${normalizeText(song.title)}|${normalizeText(song.artist)}`;
+}
+
+function getBalancedAllGenresOrder(eligibleSongs) {
+  const eligibleKeys = eligibleSongs.map((song) => getSongKey(song));
+  const categoryPools = shuffleSongs(allGenreCategoryPools).map((pool) =>
+    shuffleSongs(pool.filter((song) => eligibleKeys.includes(getSongKey(song))))
+  );
+  const positions = categoryPools.map(() => 0);
+  const usedKeys = [];
+  const balancedOrder = [];
+  let addedSong = true;
+
+  while (addedSong) {
+    addedSong = false;
+
+    categoryPools.forEach((pool, categoryIndex) => {
+      while (positions[categoryIndex] < pool.length
+        && usedKeys.includes(getSongKey(pool[positions[categoryIndex]]))) {
+        positions[categoryIndex] += 1;
+      }
+
+      if (positions[categoryIndex] < pool.length) {
+        const song = pool[positions[categoryIndex]];
+        positions[categoryIndex] += 1;
+        usedKeys.push(getSongKey(song));
+        balancedOrder.push(song);
+        addedSong = true;
+      }
+    });
+  }
+
+  return balancedOrder;
+}
+
 function isCleanMatch(result, expectedSong) {
   const blockedVersionWords = /\b(live|karaoke|tribute|remix|instrumental|cover)\b/i;
   const resultDescription = `${result.trackName || ""} ${result.collectionName || ""}`;
@@ -126,9 +163,38 @@ async function findSongOnItunes(expectedSong) {
 }
 
 async function getTenRealSongs(activeRequest) {
-  const poolOrder = shuffleSongs(songPools[selectedRoom]);
+  const uniquePool = [];
+  const poolKeys = [];
+
+  songPools[selectedRoom].forEach((song) => {
+    const key = getSongKey(song);
+    if (!poolKeys.includes(key)) {
+      poolKeys.push(key);
+      uniquePool.push(song);
+    }
+  });
+
+  const songsFromPreviousGame = uniquePool.filter((song) => previousGameSongKeys.includes(getSongKey(song)));
+  const freshSongs = uniquePool.filter((song) => !previousGameSongKeys.includes(getSongKey(song)));
+  let poolOrder;
+
+  if (freshSongs.length >= 10) {
+    const freshOrder = selectedRoom === "All Genres"
+      ? getBalancedAllGenresOrder(freshSongs)
+      : shuffleSongs(freshSongs);
+    const repeatOrder = selectedRoom === "All Genres"
+      ? getBalancedAllGenresOrder(songsFromPreviousGame)
+      : shuffleSongs(songsFromPreviousGame);
+    poolOrder = freshOrder.concat(repeatOrder);
+  } else {
+    poolOrder = selectedRoom === "All Genres"
+      ? getBalancedAllGenresOrder(uniquePool)
+      : shuffleSongs(uniquePool);
+  }
+
   const realSongs = [];
   const usedTrackIds = [];
+  const usedSongKeys = [];
 
   for (const poolSong of poolOrder) {
     if (activeRequest !== requestNumber) return [];
@@ -140,8 +206,11 @@ async function getTenRealSongs(activeRequest) {
     const result = await findSongOnItunes(poolSong);
     if (!result) continue;
     if (result.trackId && usedTrackIds.includes(result.trackId)) continue;
+    const resultKey = getSongKey({ title: result.trackName, artist: result.artistName });
+    if (usedSongKeys.includes(resultKey)) continue;
 
     if (result.trackId) usedTrackIds.push(result.trackId);
+    usedSongKeys.push(resultKey);
     realSongs.push(result);
   }
 
@@ -205,6 +274,7 @@ async function loadDraftSongs(activeRequest) {
     draftSongs = await getTenRealSongs(activeRequest);
     if (activeRequest !== requestNumber) return;
 
+    previousGameSongKeys = draftSongs.map((song) => getSongKey({ title: song.trackName, artist: song.artistName }));
     gameReady = true;
     songStatus.hidden = true;
     beginCurrentSong();
